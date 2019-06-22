@@ -4,10 +4,8 @@ package com.dbController;
 import com.db.DBConnection;
 import com.model.Book;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class BookController {
 
@@ -45,6 +43,33 @@ public class BookController {
             return book;
         }
         return null;
+    }
+
+    public static int updateBook(Book book) throws ClassNotFoundException, SQLException {
+        String sql = "UPDATE books SET bookId= ? ,name= ? ,author= ? ,category= ? ,description= ? ,noOfCopies= ? WHERE bookId= '" +book.getBookId()+ "'";
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        PreparedStatement stm = conn.prepareStatement(sql);
+        stm.setObject(1, book.getBookId());
+        stm.setObject(2, book.getName());
+        stm.setObject(3, book.getAuthor());
+        stm.setObject(4, book.getCategory());
+        stm.setObject(5, book.getDescription());
+        stm.setObject(6, book.getNoOfCopies());
+
+        return  stm.executeUpdate();
+    }
+
+    public static ArrayList<Book> getAllBooks() throws ClassNotFoundException, SQLException{
+        Connection conn=DBConnection.getDBConnection().getConnection();
+        Statement stm = conn.createStatement();
+        ResultSet rst = stm.executeQuery("Select * From books");
+        ArrayList <Book> BookList = new ArrayList<>();
+        while(rst.next()){
+            Book book;
+            book = new Book(rst.getInt(1),rst.getString(2),rst.getString(3), rst.getString(4), rst.getString(5), rst.getInt(6));
+            BookList.add(book);
+        }
+        return BookList;
     }
 
 }
