@@ -5,6 +5,7 @@ import com.dbController.BookController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.model.Book;
+import com.tableModel.BookTableModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -81,25 +82,25 @@ public class BookManagemetController implements Initializable {
     private JFXTextField copiesField;
 
     @FXML
-    private TableView<?> booksTable;
+    private TableView<BookTableModel> booksTable;
 
     @FXML
-    private TableColumn<?, ?> BookIdColumn;
+    private TableColumn<BookTableModel, Integer> BookIdColumn;
 
     @FXML
-    private TableColumn<?, ?> BookNameColumn;
+    private TableColumn<BookTableModel, String> BookNameColumn;
 
     @FXML
-    private TableColumn<?, ?> AuthorColumn;
+    private TableColumn<BookTableModel, String> AuthorColumn;
 
     @FXML
-    private TableColumn<?, ?> CategoryColumn;
+    private TableColumn<BookTableModel, String> CategoryColumn;
 
     @FXML
-    private TableColumn<?, ?> DescriptionColumn;
+    private TableColumn<BookTableModel, String> DescriptionColumn;
 
     @FXML
-    private TableColumn<?, ?> CopiesColumn;
+    private TableColumn<BookTableModel, String> CopiesColumn;
 
 
     @FXML
@@ -296,7 +297,59 @@ public class BookManagemetController implements Initializable {
 
     @FXML
     void updateBook(ActionEvent event) {
+        ValidationController valid = new ValidationController();
+
+        if(valid.validateEmpty(bookIdField) && valid.validateEmpty(bookNameField) && valid.validateEmpty(authorField) &&
+                valid.validateEmpty(categoryField) && valid.validateEmpty(copiesField))
+
+        {
+            int bookId = Integer.parseInt(bookIdField.getText());
+            String bookname = bookNameField.getText();
+            String author = authorField.getText();
+            String category = categoryField.getText();
+            String description = descriptionField.getText();
+            int copies = Integer.parseInt(copiesField.getText());
+
+            try {
+                Book book = new Book(bookId,bookname,author,category,description,copies);
+                int i = BookController.updateBook(book);
+
+                if (i > 0) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Book Management");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Book Updated Successfully..!");
+                    alert.showAndWait();
+
+                    bookIdField.setText(null);
+                    bookNameField.setText(null);
+                    authorField.setText(null);
+                    categoryField.setText(null);
+                    descriptionField.setText(null);
+                    copiesField.setText(null);
+                }
+                else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Book Management");
+                    alert.setHeaderText(null);
+                    alert.setContentText("There is an Error in Updating Book..!");
+                    alert.showAndWait();
+                }
+
+
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
 
     }
+
+    public void loadTable(){
+        
+    }
+
 
 }
