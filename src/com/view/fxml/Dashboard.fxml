@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.view.controller.DashboardController">
+   <children>
+      <AnchorPane fx:id="sidebar" prefHeight="600.0" prefWidth="247.0" styleClass="vbox">
+         <children>
+            <JFXButton fx:id="btnDashboard" layoutX="15.0" layoutY="61.0" onAction="#btnDashboard" prefHeight="68.0" prefWidth="215.0" style="-fx-background-color: c62828;" text="Dashboard">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnBookMgmt" layoutX="15.0" layoutY="143.0" onAction="#btnBookMgmt" prefHeight="68.0" prefWidth="215.0" text="Book Management">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnMemberMgmt" layoutX="16.0" layoutY="226.0" onAction="#btnMemberMgmt" prefHeight="68.0" prefWidth="215.0" text="Members Management">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnUserMgmt" layoutX="17.0" layoutY="310.0" onAction="#btnUserMgmt" prefHeight="68.0" prefWidth="215.0" text="Users Managment">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnLendBook" layoutX="17.0" layoutY="394.0" onAction="#btnLendBook" prefHeight="68.0" prefWidth="215.0" text="Lend a Book">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnSignOut" layoutX="17.0" layoutY="477.0" onAction="#btnSignOut" prefHeight="68.0" prefWidth="215.0" text="Sign Out">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <Pane layoutX="310.0" layoutY="134.0" prefHeight="136.0" prefWidth="287.0" style="-fx-background-color: #00c0ef;">
+         <children>
+            <Text fill="WHITE" layoutX="16.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Number of Book Available">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <JFXTextField fx:id="bookCount" layoutX="73.0" layoutY="80.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="650.0" layoutY="133.0" prefHeight="136.0" prefWidth="287.0" style="-fx-background-color: #dd4b39;">
+         <children>
+            <Text fill="WHITE" layoutX="55.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Members Count">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <JFXTextField fx:id="membersCount" layoutX="81.0" layoutY="82.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="311.0" layoutY="313.0" prefHeight="136.0" prefWidth="287.0" style="-fx-background-color: #00a65a;">
+         <children>
+            <Text fill="WHITE" layoutX="56.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Books for Lend">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <JFXTextField fx:id="lendCount" layoutX="72.0" layoutY="86.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="651.0" layoutY="312.0" prefHeight="136.0" prefWidth="287.0" style="-fx-background-color: #f39c12;">
+         <children>
+            <Text fill="WHITE" layoutX="102.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Users">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <JFXTextField fx:id="usersCount" layoutX="82.0" layoutY="89.0" />
+         </children>
+      </Pane>
+      <Text layoutX="394.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Library Management System">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
