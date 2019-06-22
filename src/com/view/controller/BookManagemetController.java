@@ -6,6 +6,7 @@ import com.dbController.BookController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.model.Book;
+import com.model.User;
 import com.tableModel.BookTableModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -113,6 +114,41 @@ public class BookManagemetController implements Initializable {
 
 
     @FXML
+    void loadTable(){
+
+        BookIdColumn.setCellValueFactory(new PropertyValueFactory<BookTableModel, Integer>("bookId"));
+        BookNameColumn.setCellValueFactory(new PropertyValueFactory<BookTableModel, String>("name"));
+        AuthorColumn.setCellValueFactory(new PropertyValueFactory<BookTableModel, String>("author"));
+        CategoryColumn.setCellValueFactory(new PropertyValueFactory<BookTableModel, String>("category"));
+        DescriptionColumn.setCellValueFactory(new PropertyValueFactory<BookTableModel, String>("description"));
+        CopiesColumn.setCellValueFactory(new PropertyValueFactory<BookTableModel, Integer>("noOfCopies"));
+
+        try {
+            booksTable.setItems(data);
+            ArrayList<Book> books = null;
+            books = BookController.getAllBooks();
+
+            for (Book book : books) {
+                BookTableModel ctm = new BookTableModel();
+                ctm.setBookId(book.getBookId());
+                ctm.setName(book.getName());
+                ctm.setAuthor(book.getAuthor());
+                ctm.setCategory(book.getCategory());
+                ctm.setDescription(book.getDescription());
+                ctm.setNoOfCopies(book.getNoOfCopies());
+
+                data.add(ctm);
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
     void btnBookMgmt(ActionEvent event) {
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource(("/com/view/fxml/BookManagement.fxml")));
@@ -167,73 +203,6 @@ public class BookManagemetController implements Initializable {
         }
     }
 
-    void loadTable(){
-
-        //booksTable.getItems().clear();
-
-        try {
-            Connection conn = DBConnection.getDBConnection().getConnection();
-            String sql = "select * from books";
-            ResultSet rs = conn.createStatement().executeQuery(sql);
-
-            while (rs.next()) {
-                BookTableModel btm = new BookTableModel(rs.getInt("bookId"), rs.getString("name"), rs.getString("author"),
-                        rs.getString("category"), rs.getString("description"), rs.getInt("noOfCopies"));
-                data.add(btm);
-            }
-
-            BookIdColumn.setCellValueFactory(new PropertyValueFactory<>("bookId"));
-            BookNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-            AuthorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
-            CategoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
-            DescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-            CopiesColumn.setCellValueFactory(new PropertyValueFactory<>("noOfCopies"));
-
-            booksTable.setItems(data);
-
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-   /* void loadTable(){
-
-        BookIdColumn.setCellValueFactory(new PropertyValueFactory<BookTableModel, Integer>("bookId"));
-        BookNameColumn.setCellValueFactory(new PropertyValueFactory<BookTableModel, String>("name"));
-        AuthorColumn.setCellValueFactory(new PropertyValueFactory<BookTableModel, String>("author"));
-        CategoryColumn.setCellValueFactory(new PropertyValueFactory<BookTableModel, String>("category"));
-        DescriptionColumn.setCellValueFactory(new PropertyValueFactory<BookTableModel, String>("description"));
-        CopiesColumn.setCellValueFactory(new PropertyValueFactory<BookTableModel, Integer>("noOfCopies"));
-
-
-
-        try {
-            booksTable.setItems(data);
-            ArrayList<Book> books = BookController.getAllBooks();
-
-            for (Book book : books) {
-                BookTableModel btm = new BookTableModel();
-                btm.setBookId(Integer.parseInt(String.valueOf(book.getBookId())));
-                btm.setName(book.getName());
-                btm.setAuthor(book.getAuthor());
-                btm.setCategory(book.getAuthor());
-                btm.setDescription(book.getDescription());
-                btm.setNoOfCopies(Integer.parseInt(String.valueOf(book.getNoOfCopies())));
-
-                data.add(btm);
-            }
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-*/
     @FXML
     void addBook(ActionEvent event) {
 

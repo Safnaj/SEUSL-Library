@@ -3,21 +3,12 @@ package com.tableModel;
 
 public class BookTableModel {
 
-     int bookId;
-     String name;
-     String author;
-     String category;
-     String description;
-     int noOfCopies;
-
-    public BookTableModel() {
-        this.bookId = bookId;
-        this.name = name;
-        this.author = author;
-        this.category = category;
-        this.description = description;
-        this.noOfCopies = noOfCopies;
-    }
+    private int bookId;
+    private String name;
+    private String author;
+    private String category;
+    private String description;
+    private int noOfCopies;
 
     public BookTableModel(int bookId, String name, String author, String category, String description, int noOfCopies) {
         this.bookId = bookId;
@@ -26,6 +17,10 @@ public class BookTableModel {
         this.category = category;
         this.description = description;
         this.noOfCopies = noOfCopies;
+    }
+
+    public BookTableModel() {
+
     }
 
     public int getBookId() {

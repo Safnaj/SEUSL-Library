@@ -53,16 +53,21 @@
       </Text>
       <Pane layoutX="265.0" layoutY="78.0" prefHeight="89.0" prefWidth="717.0" style="-fx-background-color: #1976D2;">
          <children>
-            <JFXButton fx:id="addUser" buttonType="RAISED" layoutX="114.0" layoutY="108.0" onAction="#addUser" prefHeight="38.0" prefWidth="112.0" style="-fx-background-color: #1976D2;" text="Add" textFill="WHITE">
-               <font>
-                  <Font name="Calibri Bold" size="16.0" />
-               </font>
-            </JFXButton>
             <JFXTextField fx:id="usernameField" focusColor="WHITE" labelFloat="true" layoutX="118.0" layoutY="17.0" prefHeight="37.0" prefWidth="193.0" promptText="Username" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXTextField>
+            <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" layoutX="412.0" layoutY="18.0" promptText="Password" style="-fx-text-inner-color: #ffffff; -fx-prompt-text-fill: #ffffff;" unFocusColor="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXButton fx:id="addUser" buttonType="RAISED" layoutX="114.0" layoutY="108.0" onAction="#addUser" prefHeight="38.0" prefWidth="112.0" style="-fx-background-color: #1976D2;" text="Add" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </JFXButton>
             <JFXButton fx:id="searchUser" buttonType="RAISED" layoutX="239.0" layoutY="108.0" onAction="#searchUser" prefHeight="38.0" prefWidth="112.0" style="-fx-background-color: #1976D2;" text="Search" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="16.0" />
@@ -78,11 +83,6 @@
                   <Font name="Calibri Bold" size="16.0" />
                </font>
             </JFXButton>
-            <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" layoutX="412.0" layoutY="18.0" promptText="Password" style="-fx-text-inner-color: #ffffff; -fx-prompt-text-fill: #ffffff;" unFocusColor="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </JFXPasswordField>
          </children>
       </Pane>
       <TableView fx:id="usersTable" layoutX="264.0" layoutY="276.0" prefHeight="304.0" prefWidth="717.0">
