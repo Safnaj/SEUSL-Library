@@ -75,7 +75,7 @@
                   <Font name="Calibri Bold" size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="deleteManagement" buttonType="RAISED" layoutX="486.0" layoutY="145.0" onAction="#deleteManagement" prefHeight="38.0" prefWidth="112.0" style="-fx-background-color: #f22613;" text="Delete" textFill="WHITE">
+            <JFXButton fx:id="deleteMember" buttonType="RAISED" layoutX="486.0" layoutY="145.0" onAction="#deleteMember" prefHeight="38.0" prefWidth="112.0" style="-fx-background-color: #f22613;" text="Delete" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="16.0" />
                </font>
@@ -120,7 +120,7 @@
             </JFXRadioButton>
          </children>
       </Pane>
-      <TableView fx:id="booksTable" layoutX="264.0" layoutY="276.0" prefHeight="304.0" prefWidth="717.0">
+      <TableView fx:id="membersTable" layoutX="264.0" layoutY="276.0" prefHeight="304.0" prefWidth="717.0">
          <columns>
             <TableColumn fx:id="MemberIdColumn" prefWidth="71.99996948242188" text="Member ID" />
             <TableColumn fx:id="NameColumn" prefWidth="165.33334350585938" text="Name" />

@@ -1,12 +1,10 @@
 package com.view.controller;
 
 
-import com.db.DBConnection;
-import com.dbController.BookController;
+import com.dbController.BookDbController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.model.Book;
-import com.model.User;
 import com.tableModel.BookTableModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,8 +20,6 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -126,7 +122,7 @@ public class BookManagemetController implements Initializable {
         try {
             booksTable.setItems(data);
             ArrayList<Book> books = null;
-            books = BookController.getAllBooks();
+            books = BookDbController.getAllBooks();
 
             for (Book book : books) {
                 BookTableModel ctm = new BookTableModel();
@@ -190,7 +186,12 @@ public class BookManagemetController implements Initializable {
 
     @FXML
     void btnSignOut(ActionEvent event) {
-
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource(("/com/view/fxml/Login.fxml")));
+            root.getChildren().setAll(pane);
+        }catch(IOException e){
+            System.out.println(e);
+        }
     }
 
     @FXML
@@ -221,7 +222,7 @@ public class BookManagemetController implements Initializable {
 
             try {
                 Book book = new Book(bookId,bookname,author,category,description,copies);
-                int i = BookController.AddBook(book);
+                int i = BookDbController.AddBook(book);
 
                 if (i > 0) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -266,7 +267,7 @@ public class BookManagemetController implements Initializable {
         int bookId = Integer.parseInt(bookIdField.getText());
 
         try {
-           int deleteBook = BookController.DeleteBook(bookId);
+           int deleteBook = BookDbController.DeleteBook(bookId);
 
            if(deleteBook > 0){
                Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -316,7 +317,7 @@ public class BookManagemetController implements Initializable {
         int bookId = Integer.parseInt(bookIdField.getText());
 
         try {
-            Book book = BookController.searchBook(bookId);
+            Book book = BookDbController.searchBook(bookId);
 
             if(book != null){
                 bookIdField.setText(String.valueOf(book.getBookId()));
@@ -365,7 +366,7 @@ public class BookManagemetController implements Initializable {
 
             try {
                 Book book = new Book(bookId,bookname,author,category,description,copies);
-                int i = BookController.updateBook(book);
+                int i = BookDbController.updateBook(book);
 
                 if (i > 0) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);

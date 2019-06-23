@@ -113,7 +113,12 @@ public class LendBookController implements Initializable {
 
     @FXML
     void btnSignOut(ActionEvent event) {
-
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource(("/com/view/fxml/Login.fxml")));
+            root.getChildren().setAll(pane);
+        }catch(IOException e){
+            System.out.println(e);
+        }
     }
 
     @FXML

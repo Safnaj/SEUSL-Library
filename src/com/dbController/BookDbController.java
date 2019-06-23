@@ -7,7 +7,7 @@ import com.model.Book;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class BookController {
+public class BookDbController {
 
     public static int AddBook(Book book)throws ClassNotFoundException,SQLException {
         String SQL="INSERT INTO books VALUES(?,?,?,?,?,?)";
@@ -71,5 +71,7 @@ public class BookController {
         }
         return BookList;
     }
+
+
 
 }

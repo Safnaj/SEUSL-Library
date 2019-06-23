@@ -7,7 +7,7 @@ import com.model.User;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class UserController {
+public class UserDbController {
 
     public static int addUser(User user)throws ClassNotFoundException,SQLException {
         String SQL="INSERT INTO users VALUES(?,?)";

@@ -1,6 +1,6 @@
 package com.view.controller;
 
-import com.dbController.UserController;
+import com.dbController.UserDbController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -95,7 +95,7 @@ public class UserManagementController implements Initializable {
         try {
             usersTable.setItems(data);
             ArrayList<User> users = null;
-            users = UserController.getAllUsers();
+            users = UserDbController.getAllUsers();
 
             for (User user : users) {
                 UserTableModel ctm = new UserTableModel();
@@ -153,7 +153,12 @@ public class UserManagementController implements Initializable {
 
     @FXML
     void btnSignOut(ActionEvent event) {
-
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource(("/com/view/fxml/Login.fxml")));
+            root.getChildren().setAll(pane);
+        }catch(IOException e){
+            System.out.println(e);
+        }
     }
 
     @FXML
@@ -175,7 +180,7 @@ public class UserManagementController implements Initializable {
                 String password = passwordField.getText();
 
                 User user = new User(username, password);
-                int i = UserController.addUser(user);
+                int i = UserDbController.addUser(user);
 
                 if(i > 0){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -204,7 +209,7 @@ public class UserManagementController implements Initializable {
         String username = usernameField.getText();
 
         try {
-            int deleteUser = UserController.deleteUser(username);
+            int deleteUser = UserDbController.deleteUser(username);
 
             if(deleteUser > 0){
 
@@ -244,7 +249,7 @@ public class UserManagementController implements Initializable {
         String username = usernameField.getText();
 
         try {
-            User search = UserController.searchUser(username);
+            User search = UserDbController.searchUser(username);
 
             if(search != null){
 
@@ -280,7 +285,7 @@ public class UserManagementController implements Initializable {
         try {
 
             User user = new User(username,password);
-            int update = UserController.updateUser(user);
+            int update = UserDbController.updateUser(user);
 
             if(update > 0){
 

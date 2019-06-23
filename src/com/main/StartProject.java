@@ -12,7 +12,7 @@ public class StartProject extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         Parent root = FXMLLoader.load(getClass().getResource("/com/view/fxml/Dashboard.fxml"));
-        primaryStage.setTitle("School Management System");
+        primaryStage.setTitle("Library Management System");
         primaryStage.setScene(new Scene(root));
        // primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/sms/other/img/HikmaLogo.jpg")));
         primaryStage.show();
