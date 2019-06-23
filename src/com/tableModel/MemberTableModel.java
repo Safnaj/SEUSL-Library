@@ -3,12 +3,12 @@ package com.tableModel;
 
 public class MemberTableModel {
 
-    int memberId;
-    String name;
-    String doa;
-    String gender;
-    String email;
-    String phoneNo;
+     int memberId;
+     String name;
+     String doa;
+     String gender;
+     String email;
+     String phoneNo;
 
     public MemberTableModel(int memberId, String name, String doa, String gender, String email, String phoneNo) {
         this.memberId = memberId;
@@ -19,9 +19,7 @@ public class MemberTableModel {
         this.phoneNo = phoneNo;
     }
 
-    public MemberTableModel() {
-
-    }
+    public MemberTableModel(){}
 
     public int getMemberId() {
         return memberId;

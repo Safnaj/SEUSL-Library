@@ -166,7 +166,7 @@ public class MemberManagementController implements Initializable {
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource(("/com/view/fxml/UserManagement.fxml")));
             root.getChildren().setAll(pane);
-        }catch(IOException e){
+        } catch (IOException e) {
             System.out.println(e);
         }
     }
@@ -179,28 +179,28 @@ public class MemberManagementController implements Initializable {
         DOAColumn.setCellValueFactory(new PropertyValueFactory<MemberTableModel, String>("doa"));
         GenderColumn.setCellValueFactory(new PropertyValueFactory<MemberTableModel, String>("gender"));
         EmailColumn.setCellValueFactory(new PropertyValueFactory<MemberTableModel, String>("email"));
-        PhoneColumn.setCellValueFactory(new PropertyValueFactory<MemberTableModel, String>("phone"));
+        PhoneColumn.setCellValueFactory(new PropertyValueFactory<MemberTableModel, String>("phoneNo"));
 
-        try {
+        try{
             membersTable.setItems(data);
             ArrayList<Member> members = null;
             members = MemberDbController.getAllMembers();
 
-            for (Member member : members) {
-                MemberTableModel ctm = new MemberTableModel();
-                ctm.setMemberId(member.getMemberId());
-                ctm.setName(member.getName());
-                ctm.setDoa(member.getDoa());
-                ctm.setGender(member.getGender());
-                ctm.setEmail(member.getEmail());
-                ctm.setPhoneNo(member.getPhoneNo());
+            for (Member member : members){
+                MemberTableModel mtm = new MemberTableModel();
+                mtm.setMemberId(member.getMemberId());
+                mtm.setName(member.getName());
+                mtm.setDoa(member.getName());
+                mtm.setGender(member.getName());
+                mtm.setEmail(member.getEmail());
+                mtm.setPhoneNo(member.getPhoneNo());
 
-                data.add(ctm);
+                data.add(mtm);
             }
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -239,7 +239,6 @@ public class MemberManagementController implements Initializable {
                     doaField.setText(null);
                     emailField.setText(null);
                     phoneField.setText(null);
-                    Gender.setUserData(null);
 
                     //Table Refresh
                     data.clear();
@@ -259,9 +258,7 @@ public class MemberManagementController implements Initializable {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
         }
-
     }
 
     @FXML
@@ -284,7 +281,6 @@ public class MemberManagementController implements Initializable {
                 doaField.setText(null);
                 emailField.setText(null);
                 phoneField.setText(null);
-                Gender.setUserData(null);
 
                 //Table Refresh
                 data.clear();
@@ -302,9 +298,7 @@ public class MemberManagementController implements Initializable {
                 doaField.setText(null);
                 emailField.setText(null);
                 phoneField.setText(null);
-                Gender.setUserData(null);
             }
-
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

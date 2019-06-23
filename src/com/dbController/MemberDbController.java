@@ -46,7 +46,7 @@ public class MemberDbController {
     }
 
     public static int updateBook(Member member) throws ClassNotFoundException, SQLException {
-        String sql = "UPDATE members SET memberId= ? ,name= ? ,doa= ? ,gender= ? ,email= ? ,phone= ? WHERE memberId= '" +member.getMemberId()+ "'";
+        String sql = "UPDATE members SET memberId= ? ,name= ? ,doa= ? ,gender= ? ,email= ? ,phoneNo= ? WHERE memberId= '" +member.getMemberId()+ "'";
         Connection conn = DBConnection.getDBConnection().getConnection();
         PreparedStatement stm = conn.prepareStatement(sql);
         stm.setObject(1, member.getMemberId());

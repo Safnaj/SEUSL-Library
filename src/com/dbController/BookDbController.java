@@ -72,6 +72,16 @@ public class BookDbController {
         return BookList;
     }
 
+    public static ArrayList<String> getBooks() throws ClassNotFoundException, SQLException{
+        Connection conn=DBConnection.getDBConnection().getConnection();
+        Statement stm=conn.createStatement();
+        ResultSet rst=stm.executeQuery("Select name from books");
 
+        ArrayList<String>bookList=new ArrayList<>();
+        while(rst.next()){
+            bookList.add(rst.getString("name"));
+        }
+        return bookList;
+    }
 
 }
