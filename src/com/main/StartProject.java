@@ -11,7 +11,7 @@ public class StartProject extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        Parent root = FXMLLoader.load(getClass().getResource("/com/view/fxml/Dashboard.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/view/fxml/Login.fxml"));
         primaryStage.setTitle("Library Management System");
         primaryStage.setScene(new Scene(root));
        // primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/sms/other/img/HikmaLogo.jpg")));

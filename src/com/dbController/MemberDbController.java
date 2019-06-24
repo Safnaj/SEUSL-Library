@@ -73,19 +73,21 @@ public class MemberDbController {
         return userList;
     }
 
-    public static boolean checkMemberID(Integer memberId) throws SQLException, ClassNotFoundException {
+    public static boolean checkMemberID(int memberId) throws SQLException, ClassNotFoundException {
+        boolean memberIdExists = false;
+
         Connection conn=DBConnection.getDBConnection().getConnection();
         Statement stm = conn.createStatement();
-        ResultSet rst = stm.executeQuery("SELECT memberId FROM members WHERE memberId='"+memberId+"'");
-        if(rst != null){
-            return true;
-        }else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Member Management");
-            alert.setHeaderText(null);
-            alert.setContentText("Member ID already exists..!");
-            alert.showAndWait();
+        ResultSet rst = stm.executeQuery("SELECT * FROM members WHERE memberId='"+memberId+"'");
+
+        String id;
+        if (rst.next()){
+            id = rst.getString("memberId");
+            if(id.equals(memberId)){
+                memberIdExists = true;
+            }
         }
-        return true;
+        return memberIdExists;
     }
-}
+
+} //End of the Class

@@ -222,9 +222,8 @@ public class MemberManagementController implements Initializable {
             String email = emailField.getText();
             String phone = phoneField.getText();
 
-
             try {
-                MemberDbController.checkMemberID(memberId); //Checking Member ID already registered
+
                 Member member = new Member(memberId,name,doa,gender,email,phone);
                 int i = MemberDbController.AddMember(member);
 
@@ -252,8 +251,6 @@ public class MemberManagementController implements Initializable {
                     alert.setContentText("There is an Error in Adding Member..!");
                     alert.showAndWait();
                 }
-
-
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (SQLException e) {
