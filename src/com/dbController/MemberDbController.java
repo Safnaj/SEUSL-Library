@@ -2,6 +2,7 @@ package com.dbController;
 
 import com.db.DBConnection;
 import com.model.Member;
+import javafx.scene.control.Alert;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -45,8 +46,8 @@ public class MemberDbController {
         return null;
     }
 
-    public static int updateBook(Member member) throws ClassNotFoundException, SQLException {
-        String sql = "UPDATE members SET memberId= ? ,name= ? ,doa= ? ,gender= ? ,email= ? ,phoneNo= ? WHERE memberId= '" +member.getMemberId()+ "'";
+    public static int updateMember(Member member) throws ClassNotFoundException, SQLException {
+        String sql = "UPDATE members SET memberId= ? ,name= ? ,adDate= ? ,Gender= ? ,email= ? ,phoneNo= ? WHERE memberId= '" +member.getMemberId()+ "'";
         Connection conn = DBConnection.getDBConnection().getConnection();
         PreparedStatement stm = conn.prepareStatement(sql);
         stm.setObject(1, member.getMemberId());
@@ -72,4 +73,19 @@ public class MemberDbController {
         return userList;
     }
 
+    public static boolean checkMemberID(Integer memberId) throws SQLException, ClassNotFoundException {
+        Connection conn=DBConnection.getDBConnection().getConnection();
+        Statement stm = conn.createStatement();
+        ResultSet rst = stm.executeQuery("SELECT memberId FROM members WHERE memberId='"+memberId+"'");
+        if(rst != null){
+            return true;
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Member Management");
+            alert.setHeaderText(null);
+            alert.setContentText("Member ID already exists..!");
+            alert.showAndWait();
+        }
+        return true;
+    }
 }

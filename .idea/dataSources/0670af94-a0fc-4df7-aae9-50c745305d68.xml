@@ -943,81 +943,76 @@
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
     <table id="239" parent="11" name="books"/>
-    <table id="240" parent="11" name="members"/>
-    <table id="241" parent="11" name="users"/>
-    <column id="242" parent="239" name="bookId">
+    <table id="240" parent="11" name="lend"/>
+    <table id="241" parent="11" name="members"/>
+    <table id="242" parent="11" name="users"/>
+    <column id="243" parent="239" name="bookId">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="243" parent="239" name="name">
+    <column id="244" parent="239" name="name">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="244" parent="239" name="author">
+    <column id="245" parent="239" name="author">
       <Position>3</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="245" parent="239" name="category">
+    <column id="246" parent="239" name="category">
       <Position>4</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="246" parent="239" name="description">
+    <column id="247" parent="239" name="description">
       <Position>5</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="247" parent="239" name="noOfCopies">
+    <column id="248" parent="239" name="noOfCopies">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="248" parent="239" name="PRIMARY">
+    <key id="249" parent="239" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>bookId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="249" parent="240" name="memberId">
+    <column id="250" parent="240" name="memberId">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="250" parent="240" name="name">
+    <column id="251" parent="240" name="book">
       <Position>2</Position>
-      <DataType>varchar(50)|0s</DataType>
+      <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="251" parent="240" name="doa">
+    <column id="252" parent="240" name="borrowDate">
       <Position>3</Position>
-      <DataType>varchar(20)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="252" parent="240" name="gender">
-      <Position>4</Position>
-      <DataType>varchar(20)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="253" parent="240" name="email">
-      <Position>5</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="254" parent="240" name="phoneNo">
-      <Position>6</Position>
+    <column id="253" parent="240" name="returnDate">
+      <Position>4</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="254" parent="240" name="lender">
+      <Position>5</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
@@ -1027,13 +1022,54 @@
       <ColNames>memberId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="256" parent="241" name="username">
+    <column id="256" parent="241" name="memberId">
+      <Position>1</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="257" parent="241" name="name">
+      <Position>2</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="258" parent="241" name="doa">
+      <Position>3</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="259" parent="241" name="gender">
+      <Position>4</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="260" parent="241" name="email">
+      <Position>5</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="261" parent="241" name="phoneNo">
+      <Position>6</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="262" parent="241" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>memberId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="263" parent="242" name="username">
       <Position>1</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="241" name="password">
+    <column id="264" parent="242" name="password">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>

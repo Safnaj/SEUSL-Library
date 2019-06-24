@@ -190,8 +190,8 @@ public class MemberManagementController implements Initializable {
                 MemberTableModel mtm = new MemberTableModel();
                 mtm.setMemberId(member.getMemberId());
                 mtm.setName(member.getName());
-                mtm.setDoa(member.getName());
-                mtm.setGender(member.getName());
+                mtm.setDoa(member.getDoa());
+                mtm.setGender(member.getGender());
                 mtm.setEmail(member.getEmail());
                 mtm.setPhoneNo(member.getPhoneNo());
 
@@ -224,6 +224,7 @@ public class MemberManagementController implements Initializable {
 
 
             try {
+                MemberDbController.checkMemberID(memberId); //Checking Member ID already registered
                 Member member = new Member(memberId,name,doa,gender,email,phone);
                 int i = MemberDbController.AddMember(member);
 
@@ -364,7 +365,7 @@ public class MemberManagementController implements Initializable {
 
             try {
                 Member member = new Member(memberId,name,doa,gender,email,phone);
-                int i = MemberDbController.updateBook(member);
+                int i = MemberDbController.updateMember(member);
 
 
                 if (i > 0) {

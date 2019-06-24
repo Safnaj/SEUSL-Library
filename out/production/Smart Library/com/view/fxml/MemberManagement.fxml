@@ -55,47 +55,17 @@
       </Text>
       <Pane layoutX="263.0" layoutY="61.0" prefHeight="133.0" prefWidth="717.0" style="-fx-background-color: #1976D2;">
          <children>
-            <JFXButton fx:id="addMember" buttonType="RAISED" layoutX="115.0" layoutY="145.0" onAction="#addMember" prefHeight="38.0" prefWidth="112.0" style="-fx-background-color: #1976D2;" text="Add" textFill="WHITE">
-               <font>
-                  <Font name="Calibri Bold" size="16.0" />
-               </font>
-            </JFXButton>
             <JFXTextField fx:id="memberIdField" focusColor="WHITE" labelFloat="true" layoutX="15.0" layoutY="17.0" prefHeight="37.0" prefWidth="193.0" promptText="Member ID" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXTextField>
-            <JFXButton fx:id="searchMember" buttonType="RAISED" layoutX="240.0" layoutY="145.0" onAction="#searchMember" prefHeight="38.0" prefWidth="112.0" style="-fx-background-color: #1976D2;" text="Search" textFill="WHITE">
-               <font>
-                  <Font name="Calibri Bold" size="16.0" />
-               </font>
-            </JFXButton>
-            <JFXButton fx:id="updateMember" buttonType="RAISED" layoutX="363.0" layoutY="145.0" onAction="#updateMember" prefHeight="38.0" prefWidth="112.0" style="-fx-background-color: #1976D2;" text="Update" textFill="WHITE">
-               <font>
-                  <Font name="Calibri Bold" size="16.0" />
-               </font>
-            </JFXButton>
-            <JFXButton fx:id="deleteMember" buttonType="RAISED" layoutX="486.0" layoutY="145.0" onAction="#deleteMember" prefHeight="38.0" prefWidth="112.0" style="-fx-background-color: #f22613;" text="Delete" textFill="WHITE">
-               <font>
-                  <Font name="Calibri Bold" size="16.0" />
-               </font>
-            </JFXButton>
             <JFXTextField fx:id="nameField" focusColor="WHITE" labelFloat="true" layoutX="265.0" layoutY="17.0" prefHeight="37.0" prefWidth="193.0" promptText="Name" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXTextField>
             <JFXTextField fx:id="doaField" focusColor="WHITE" labelFloat="true" layoutX="506.0" layoutY="18.0" prefHeight="37.0" prefWidth="193.0" promptText="Date of Admission" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </JFXTextField>
-            <JFXTextField fx:id="emailField" focusColor="WHITE" labelFloat="true" layoutX="264.0" layoutY="77.0" prefHeight="37.0" prefWidth="193.0" promptText="Email" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </JFXTextField>
-            <JFXTextField fx:id="phoneField" focusColor="WHITE" labelFloat="true" layoutX="506.0" layoutY="77.0" prefHeight="37.0" prefWidth="193.0" promptText="Phone No" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -118,6 +88,36 @@
                   <Font size="14.0" />
                </font>
             </JFXRadioButton>
+            <JFXTextField fx:id="emailField" focusColor="WHITE" labelFloat="true" layoutX="264.0" layoutY="77.0" prefHeight="37.0" prefWidth="193.0" promptText="Email" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="phoneField" focusColor="WHITE" labelFloat="true" layoutX="506.0" layoutY="77.0" prefHeight="37.0" prefWidth="193.0" promptText="Phone No" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="addMember" buttonType="RAISED" layoutX="115.0" layoutY="145.0" onAction="#addMember" prefHeight="38.0" prefWidth="112.0" style="-fx-background-color: #1976D2;" text="Add" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="searchMember" buttonType="RAISED" layoutX="240.0" layoutY="145.0" onAction="#searchMember" prefHeight="38.0" prefWidth="112.0" style="-fx-background-color: #1976D2;" text="Search" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="updateMember" buttonType="RAISED" layoutX="363.0" layoutY="145.0" onAction="#updateMember" prefHeight="38.0" prefWidth="112.0" style="-fx-background-color: #1976D2;" text="Update" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="deleteMember" buttonType="RAISED" layoutX="486.0" layoutY="145.0" onAction="#deleteMember" prefHeight="38.0" prefWidth="112.0" style="-fx-background-color: #f22613;" text="Delete" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </JFXButton>
          </children>
       </Pane>
       <TableView fx:id="membersTable" layoutX="264.0" layoutY="276.0" prefHeight="304.0" prefWidth="717.0">
