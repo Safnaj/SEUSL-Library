@@ -223,39 +223,56 @@ public class MemberManagementController implements Initializable {
             String phone = phoneField.getText();
 
             try {
+                if(MemberDbController.checkMemberID(memberId)){
+                    try {
 
-                Member member = new Member(memberId,name,doa,gender,email,phone);
-                int i = MemberDbController.AddMember(member);
+                        Member member = new Member(memberId,name,doa,gender,email,phone);
+                        int i = MemberDbController.AddMember(member);
 
-                if (i > 0) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Member Management");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Member Added Successfully..!");
-                    alert.showAndWait();
+                        if (i > 0) {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Member Management");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Member Added Successfully..!");
+                            alert.showAndWait();
 
-                    memberIdField.setText(null);
-                    nameField.setText(null);
-                    doaField.setText(null);
-                    emailField.setText(null);
-                    phoneField.setText(null);
+                            memberIdField.setText(null);
+                            nameField.setText(null);
+                            doaField.setText(null);
+                            emailField.setText(null);
+                            phoneField.setText(null);
 
-                    //Table Refresh
-                    data.clear();
-                    loadTable();
+                            //Table Refresh
+                            data.clear();
+                            loadTable();
+                        }
+                        else{
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Member Management");
+                            alert.setHeaderText(null);
+                            alert.setContentText("There is an Error in Adding Member..!");
+                            alert.showAndWait();
+                        }
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
                 else{
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Member Management");
                     alert.setHeaderText(null);
-                    alert.setContentText("There is an Error in Adding Member..!");
+                    alert.setContentText("Member ID Already Exists..!");
                     alert.showAndWait();
                 }
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             } catch (SQLException e) {
                 e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
+
+
         }
     }
 

@@ -74,17 +74,17 @@ public class MemberDbController {
     }
 
     public static boolean checkMemberID(int memberId) throws SQLException, ClassNotFoundException {
-        boolean memberIdExists = false;
+        boolean memberIdExists = true;
 
         Connection conn=DBConnection.getDBConnection().getConnection();
         Statement stm = conn.createStatement();
         ResultSet rst = stm.executeQuery("SELECT * FROM members WHERE memberId='"+memberId+"'");
 
-        String id;
+        int id;
         if (rst.next()){
-            id = rst.getString("memberId");
-            if(id.equals(memberId)){
-                memberIdExists = true;
+            id = rst.getInt("memberId");
+            if(id == memberId){
+                memberIdExists = false;
             }
         }
         return memberIdExists;
