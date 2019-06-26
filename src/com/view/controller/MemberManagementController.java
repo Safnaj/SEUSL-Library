@@ -27,7 +27,9 @@ public class MemberManagementController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         loadTable();
+        loadMemberType.getItems().addAll("Student","Teacher");
     }
 
     @FXML
@@ -88,6 +90,15 @@ public class MemberManagementController implements Initializable {
     private ToggleGroup Gender;
 
     @FXML
+    private JFXTextField gradeField;
+
+    @FXML
+    private JFXTextField addressField;
+
+    @FXML
+    private ComboBox<String> loadMemberType;
+
+    @FXML
     private TableView<MemberTableModel> membersTable;
 
     @FXML
@@ -108,8 +119,21 @@ public class MemberManagementController implements Initializable {
     @FXML
     private TableColumn<MemberTableModel, String> PhoneColumn;
 
+    @FXML
+    private TableColumn<MemberTableModel, String> TypeColumn;
+
+    @FXML
+    private TableColumn<MemberTableModel, String> GradeColumn;
+
+    @FXML
+    private TableColumn<MemberTableModel, String> AddressColumn;
+
     private final ObservableList<MemberTableModel> data = FXCollections.observableArrayList();
 
+    @FXML
+    void loadMemberType(ActionEvent event) {
+
+    }
 
     @FXML
     void btnBookMgmt(ActionEvent event) {
@@ -180,6 +204,9 @@ public class MemberManagementController implements Initializable {
         GenderColumn.setCellValueFactory(new PropertyValueFactory<MemberTableModel, String>("gender"));
         EmailColumn.setCellValueFactory(new PropertyValueFactory<MemberTableModel, String>("email"));
         PhoneColumn.setCellValueFactory(new PropertyValueFactory<MemberTableModel, String>("phoneNo"));
+        TypeColumn.setCellValueFactory(new PropertyValueFactory<MemberTableModel, String>("type"));
+        GradeColumn.setCellValueFactory(new PropertyValueFactory<MemberTableModel, String>("grade"));
+        AddressColumn.setCellValueFactory(new PropertyValueFactory<MemberTableModel, String>("address"));
 
         try{
             membersTable.setItems(data);
@@ -194,6 +221,9 @@ public class MemberManagementController implements Initializable {
                 mtm.setGender(member.getGender());
                 mtm.setEmail(member.getEmail());
                 mtm.setPhoneNo(member.getPhoneNo());
+                mtm.setType(member.getType());
+                mtm.setGrade(member.getGrade());
+                mtm.setAddress(member.getAddress());
 
                 data.add(mtm);
             }
@@ -211,7 +241,8 @@ public class MemberManagementController implements Initializable {
         ValidationController valid = new ValidationController();
 
         if(valid.validateEmpty(memberIdField) && valid.validateEmpty(nameField) && valid.validateEmpty(doaField) &&
-                valid.validateEmpty(emailField) && valid.validateEmpty(phoneField) && valid.validateDate(doaField))
+                valid.validateEmpty(emailField) && valid.validateEmpty(phoneField) && valid.validateDate(doaField) &&
+                valid.validateEmpty(gradeField) && valid.validateEmpty(addressField))
 
         {
             int memberId = Integer.parseInt(memberIdField.getText());
@@ -221,12 +252,15 @@ public class MemberManagementController implements Initializable {
             String gender = selectedRadioButton.getText();
             String email = emailField.getText();
             String phone = phoneField.getText();
+            String type = loadMemberType.getValue();
+            String grade = gradeField.getText();
+            String address = addressField.getText();
 
             try {
                 if(MemberDbController.checkMemberID(memberId)){
                     try {
 
-                        Member member = new Member(memberId,name,doa,gender,email,phone);
+                        Member member = new Member(memberId,name,doa,gender,email,phone,type,grade,address);
                         int i = MemberDbController.AddMember(member);
 
                         if (i > 0) {
@@ -241,6 +275,9 @@ public class MemberManagementController implements Initializable {
                             doaField.setText(null);
                             emailField.setText(null);
                             phoneField.setText(null);
+                            loadMemberType.setValue(null);
+                            gradeField.setText(null);
+                            addressField.setText(null);
 
                             //Table Refresh
                             data.clear();
@@ -296,6 +333,9 @@ public class MemberManagementController implements Initializable {
                 doaField.setText(null);
                 emailField.setText(null);
                 phoneField.setText(null);
+                loadMemberType.setValue(null);
+                gradeField.setText(null);
+                addressField.setText(null);
 
                 //Table Refresh
                 data.clear();
@@ -338,12 +378,15 @@ public class MemberManagementController implements Initializable {
                 genderField.setText(member.getGender());
                 emailField.setText(member.getEmail());
                 phoneField.setText(String.valueOf(member.getPhoneNo()));
+                loadMemberType.setValue(member.getType());
+                gradeField.setText(member.getType());
+                addressField.setText(member.getAddress());
 
             }else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Member Management");
                 alert.setHeaderText(null);
-                alert.setContentText("Book Not Found..!");
+                alert.setContentText("Member Not Found..!");
                 alert.showAndWait();
 
                 memberIdField.setText(null);
@@ -351,7 +394,9 @@ public class MemberManagementController implements Initializable {
                 doaField.setText(null);
                 emailField.setText(null);
                 phoneField.setText(null);
-                Gender.setUserData(null);
+                loadMemberType.setValue(null);
+                gradeField.setText(null);
+                addressField.setText(null);
             }
 
         } catch (ClassNotFoundException e) {
@@ -376,9 +421,12 @@ public class MemberManagementController implements Initializable {
             String gender = selectedRadioButton.getText();
             String email = emailField.getText();
             String phone = phoneField.getText();
+            String type = loadMemberType.getValue();
+            String grade = gradeField.getText();
+            String address = addressField.getText();
 
             try {
-                Member member = new Member(memberId,name,doa,gender,email,phone);
+                Member member = new Member(memberId,name,doa,gender,email,phone,type,grade,address);
                 int i = MemberDbController.updateMember(member);
 
 
@@ -394,7 +442,9 @@ public class MemberManagementController implements Initializable {
                     doaField.setText(null);
                     emailField.setText(null);
                     phoneField.setText(null);
-                    Gender.setUserData(null);
+                    loadMemberType.setValue(null);
+                    gradeField.setText(null);
+                    addressField.setText(null);
 
                     //Table Refresh
                     data.clear();

@@ -52,17 +52,22 @@
       </Text>
       <Pane layoutX="263.0" layoutY="61.0" prefHeight="133.0" prefWidth="717.0" style="-fx-background-color: #1976D2;">
          <children>
-            <JFXTextField fx:id="bookIdField" focusColor="WHITE" labelFloat="true" layoutX="15.0" layoutY="17.0" prefHeight="37.0" prefWidth="193.0" promptText="Book ID" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="WHITE">
+            <JFXTextField fx:id="bookIdField" focusColor="WHITE" labelFloat="true" layoutX="15.0" layoutY="17.0" prefHeight="37.0" prefWidth="120.0" promptText="Book ID" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="bookNameField" focusColor="WHITE" labelFloat="true" layoutX="265.0" layoutY="17.0" prefHeight="37.0" prefWidth="193.0" promptText="Book Name" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="WHITE">
+            <JFXTextField fx:id="bookNameField" focusColor="WHITE" labelFloat="true" layoutX="157.0" layoutY="17.0" prefHeight="37.0" prefWidth="193.0" promptText="Book Name" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="authorField" focusColor="WHITE" labelFloat="true" layoutX="506.0" layoutY="18.0" prefHeight="37.0" prefWidth="193.0" promptText="Author" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="WHITE">
+            <JFXTextField fx:id="isbnField" focusColor="WHITE" labelFloat="true" layoutX="376.0" layoutY="17.0" prefHeight="37.0" prefWidth="140.0" promptText="ISBN" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="authorField" focusColor="WHITE" labelFloat="true" layoutX="536.0" layoutY="18.0" prefHeight="37.0" prefWidth="165.0" promptText="Author" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -107,11 +112,12 @@
       <TableView fx:id="booksTable" layoutX="264.0" layoutY="276.0" prefHeight="304.0" prefWidth="717.0">
          <columns>
             <TableColumn fx:id="BookIdColumn" prefWidth="71.99996948242188" text="Book ID" />
-            <TableColumn fx:id="BookNameColumn" prefWidth="165.33334350585938" text="Book Name" />
-            <TableColumn fx:id="AuthorColumn" prefWidth="100.66665649414062" text="Author" />
-            <TableColumn fx:id="CategoryColumn" prefWidth="108.66665649414062" text="Category" />
-            <TableColumn fx:id="DescriptionColumn" prefWidth="186.6666259765625" text="Description" />
-            <TableColumn fx:id="CopiesColumn" prefWidth="84.0" text="No Of Copies" />
+            <TableColumn fx:id="BookNameColumn" prefWidth="92.66665649414062" text="Book Name" />
+            <TableColumn fx:id="IsbnColumn" prefWidth="80.66665649414062" text="ISBN" />
+            <TableColumn fx:id="AuthorColumn" prefWidth="88.6666259765625" text="Author" />
+            <TableColumn fx:id="CategoryColumn" minWidth="5.66668701171875" prefWidth="133.33331298828125" text="Category" />
+            <TableColumn fx:id="DescriptionColumn" prefWidth="143.66668701171875" text="Description" />
+            <TableColumn fx:id="CopiesColumn" prefWidth="104.3333740234375" text="No Of Copies" />
          </columns>
       </TableView>
    </children>

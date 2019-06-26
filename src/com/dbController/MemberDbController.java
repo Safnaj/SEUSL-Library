@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class MemberDbController {
 
     public static int AddMember(Member member)throws ClassNotFoundException,SQLException {
-        String SQL="INSERT INTO members VALUES(?,?,?,?,?,?)";
+        String SQL="INSERT INTO members VALUES(?,?,?,?,?,?,?,?,?)";
         Connection conn = DBConnection.getDBConnection().getConnection();
         PreparedStatement stm = conn.prepareStatement(SQL);
         stm.setObject(1, member.getMemberId());
@@ -19,6 +19,9 @@ public class MemberDbController {
         stm.setObject(4, member.getGender());
         stm.setObject(5, member.getEmail());
         stm.setObject(6, member.getPhoneNo());
+        stm.setObject(7, member.getType());
+        stm.setObject(8, member.getGrade());
+        stm.setObject(9, member.getAddress());
 
         return  stm.executeUpdate();
     }
@@ -40,14 +43,14 @@ public class MemberDbController {
         ResultSet rst=stm.executeQuery();
 
         if(rst.next()){
-            Member member = new Member(rst.getInt(1),rst.getString(2),rst.getString(3), rst.getString(4), rst.getString(5), rst.getString(6));
+            Member member = new Member(rst.getInt(1),rst.getString(2),rst.getString(3), rst.getString(4), rst.getString(5), rst.getString(6), rst.getString(7), rst.getString(8), rst.getString(9));
             return member;
         }
         return null;
     }
 
     public static int updateMember(Member member) throws ClassNotFoundException, SQLException {
-        String sql = "UPDATE members SET memberId= ? ,name= ? ,doa= ? ,Gender= ? ,email= ? ,phoneNo= ? WHERE memberId= '" +member.getMemberId()+ "'";
+        String sql = "UPDATE members SET memberId= ? ,name= ? ,doa= ? ,Gender= ? ,email= ? ,phoneNo= ? ,type=? ,grade=? ,address=? WHERE memberId= '" +member.getMemberId()+ "'";
         Connection conn = DBConnection.getDBConnection().getConnection();
         PreparedStatement stm = conn.prepareStatement(sql);
         stm.setObject(1, member.getMemberId());
@@ -56,6 +59,9 @@ public class MemberDbController {
         stm.setObject(4, member.getGender());
         stm.setObject(5, member.getEmail());
         stm.setObject(6, member.getPhoneNo());
+        stm.setObject(7, member.getType());
+        stm.setObject(8, member.getGrade());
+        stm.setObject(9, member.getAddress());
 
         return  stm.executeUpdate();
     }
@@ -67,7 +73,7 @@ public class MemberDbController {
         ArrayList <Member> userList = new ArrayList<>();
         while(rst.next()){
             Member member;
-            member = new Member(rst.getInt(1),rst.getString(2),rst.getString(3), rst.getString(4), rst.getString(5), rst.getString(6));
+            member = new Member(rst.getInt(1),rst.getString(2),rst.getString(3), rst.getString(4), rst.getString(5), rst.getString(6), rst.getString(7), rst.getString(8), rst.getString(9));
             userList.add(member);
         }
         return userList;

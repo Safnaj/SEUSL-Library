@@ -5,22 +5,24 @@ public class BookTableModel {
 
     private int bookId;
     private String name;
+    private String isbn;
     private String author;
     private String category;
     private String description;
     private int noOfCopies;
 
-    public BookTableModel(int bookId, String name, String author, String category, String description, int noOfCopies) {
+    public BookTableModel() {
+
+    }
+
+    public BookTableModel(int bookId, String name, String isbn, String author, String category, String description, int noOfCopies) {
         this.bookId = bookId;
         this.name = name;
+        this.isbn = isbn;
         this.author = author;
         this.category = category;
         this.description = description;
         this.noOfCopies = noOfCopies;
-    }
-
-    public BookTableModel() {
-
     }
 
     public int getBookId() {
@@ -37,6 +39,14 @@ public class BookTableModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getAuthor() {

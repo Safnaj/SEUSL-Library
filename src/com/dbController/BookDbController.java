@@ -10,15 +10,16 @@ import java.util.ArrayList;
 public class BookDbController {
 
     public static int AddBook(Book book)throws ClassNotFoundException,SQLException {
-        String SQL="INSERT INTO books VALUES(?,?,?,?,?,?)";
+        String SQL="INSERT INTO books VALUES(?,?,?,?,?,?,?)";
         Connection conn = DBConnection.getDBConnection().getConnection();
         PreparedStatement stm = conn.prepareStatement(SQL);
         stm.setObject(1, book.getBookId());
         stm.setObject(2, book.getName());
-        stm.setObject(3, book.getAuthor());
-        stm.setObject(4, book.getCategory());
-        stm.setObject(5, book.getDescription());
-        stm.setObject(6, book.getNoOfCopies());
+        stm.setObject(3,book.getIsbn());
+        stm.setObject(4, book.getAuthor());
+        stm.setObject(5, book.getCategory());
+        stm.setObject(6, book.getDescription());
+        stm.setObject(7, book.getNoOfCopies());
 
         return  stm.executeUpdate();
     }
@@ -39,22 +40,23 @@ public class BookDbController {
         stm.setObject(1, bookId);
         ResultSet rst=stm.executeQuery();
         if(rst.next()){
-            Book book = new Book(rst.getInt(1),rst.getString(2),rst.getString(3), rst.getString(4), rst.getString(5), rst.getInt(6));
+            Book book = new Book(rst.getInt(1),rst.getString(2),rst.getString(3),rst.getString(4), rst.getString(5), rst.getString(6), rst.getInt(7));
             return book;
         }
         return null;
     }
 
     public static int updateBook(Book book) throws ClassNotFoundException, SQLException {
-        String sql = "UPDATE books SET bookId= ? ,name= ? ,author= ? ,category= ? ,description= ? ,noOfCopies= ? WHERE bookId= '" +book.getBookId()+ "'";
+        String sql = "UPDATE books SET bookId= ? ,name= ?, isbn= ? ,author= ? ,category= ? ,description= ? ,noOfCopies= ? WHERE bookId= '" +book.getBookId()+ "'";
         Connection conn = DBConnection.getDBConnection().getConnection();
         PreparedStatement stm = conn.prepareStatement(sql);
         stm.setObject(1, book.getBookId());
         stm.setObject(2, book.getName());
-        stm.setObject(3, book.getAuthor());
-        stm.setObject(4, book.getCategory());
-        stm.setObject(5, book.getDescription());
-        stm.setObject(6, book.getNoOfCopies());
+        stm.setObject(3,book.getIsbn());
+        stm.setObject(4, book.getAuthor());
+        stm.setObject(5, book.getCategory());
+        stm.setObject(6, book.getDescription());
+        stm.setObject(7, book.getNoOfCopies());
 
         return  stm.executeUpdate();
     }
@@ -66,7 +68,7 @@ public class BookDbController {
         ArrayList <Book> BookList = new ArrayList<>();
         while(rst.next()){
             Book book;
-            book = new Book(rst.getInt(1),rst.getString(2),rst.getString(3), rst.getString(4), rst.getString(5), rst.getInt(6));
+            book = new Book(rst.getInt(1),rst.getString(2),rst.getString(3),rst.getString(4), rst.getString(5), rst.getString(6), rst.getInt(7));
             BookList.add(book);
         }
         return BookList;

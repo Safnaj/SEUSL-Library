@@ -5,14 +5,16 @@ public class Book {
 
     private int bookId;
     private String name;
+    private String isbn;
     private String author;
     private String category;
     private String description;
     private int noOfCopies;
 
-    public Book(int bookId, String name, String author, String category, String description, int noOfCopies) {
+    public Book(int bookId, String name, String isbn, String author, String category, String description, int noOfCopies) {
         this.bookId = bookId;
         this.name = name;
+        this.isbn = isbn;
         this.author = author;
         this.category = category;
         this.description = description;
@@ -33,6 +35,14 @@ public class Book {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getAuthor() {

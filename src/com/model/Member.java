@@ -9,15 +9,22 @@ public class Member {
     private String gender;
     private String email;
     private String phoneNo;
+    private String type;
+    private String grade;
+    private String address;
 
-    public Member(int memberId, String name, String doa, String gender, String email, String phoneNo) {
+    public Member(int memberId, String name, String doa, String gender, String email, String phoneNo, String type, String grade, String address) {
         this.memberId = memberId;
         this.name = name;
         this.doa = doa;
         this.gender = gender;
         this.email = email;
         this.phoneNo = phoneNo;
+        this.type = type;
+        this.grade = grade;
+        this.address = address;
     }
+
 
     public int getMemberId() {
         return memberId;
@@ -65,5 +72,29 @@ public class Member {
 
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

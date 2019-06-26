@@ -74,6 +74,9 @@ public class BookManagemetController implements Initializable {
     private JFXTextField bookNameField;
 
     @FXML
+    private JFXTextField isbnField;
+
+    @FXML
     private JFXTextField authorField;
 
     @FXML
@@ -95,6 +98,9 @@ public class BookManagemetController implements Initializable {
     private TableColumn<BookTableModel, String> BookNameColumn;
 
     @FXML
+    private TableColumn<BookTableModel, String> IsbnColumn;
+
+    @FXML
     private TableColumn<BookTableModel, String> AuthorColumn;
 
     @FXML
@@ -114,6 +120,7 @@ public class BookManagemetController implements Initializable {
 
         BookIdColumn.setCellValueFactory(new PropertyValueFactory<BookTableModel, Integer>("bookId"));
         BookNameColumn.setCellValueFactory(new PropertyValueFactory<BookTableModel, String>("name"));
+        IsbnColumn.setCellValueFactory(new PropertyValueFactory<BookTableModel, String>("isbn"));
         AuthorColumn.setCellValueFactory(new PropertyValueFactory<BookTableModel, String>("author"));
         CategoryColumn.setCellValueFactory(new PropertyValueFactory<BookTableModel, String>("category"));
         DescriptionColumn.setCellValueFactory(new PropertyValueFactory<BookTableModel, String>("description"));
@@ -128,6 +135,7 @@ public class BookManagemetController implements Initializable {
                 BookTableModel ctm = new BookTableModel();
                 ctm.setBookId(book.getBookId());
                 ctm.setName(book.getName());
+                ctm.setIsbn(book.getIsbn());
                 ctm.setAuthor(book.getAuthor());
                 ctm.setCategory(book.getCategory());
                 ctm.setDescription(book.getDescription());
@@ -210,18 +218,20 @@ public class BookManagemetController implements Initializable {
         ValidationController valid = new ValidationController();
 
         if(valid.validateEmpty(bookIdField) && valid.validateEmpty(bookNameField) && valid.validateEmpty(authorField) &&
-                valid.validateEmpty(categoryField) && valid.validateEmpty(copiesField) && valid.numbersOnly(copiesField))
+                valid.validateEmpty(categoryField) && valid.validateEmpty(copiesField) && valid.numbersOnly(copiesField)&&
+                valid.validateEmpty(isbnField)&& valid.numbersOnly(isbnField))
 
         {
             int bookId = Integer.parseInt(bookIdField.getText());
             String bookname = bookNameField.getText();
+            String isbn = isbnField.getText();
             String author = authorField.getText();
             String category = categoryField.getText();
             String description = descriptionField.getText();
             int copies = Integer.parseInt(copiesField.getText());
 
             try {
-                Book book = new Book(bookId,bookname,author,category,description,copies);
+                Book book = new Book(bookId,bookname,isbn,author,category,description,copies);
                 int i = BookDbController.AddBook(book);
 
                 if (i > 0) {
@@ -233,6 +243,7 @@ public class BookManagemetController implements Initializable {
 
                     bookIdField.setText(null);
                     bookNameField.setText(null);
+                    isbnField.setText(null);
                     authorField.setText(null);
                     categoryField.setText(null);
                     descriptionField.setText(null);
@@ -278,6 +289,7 @@ public class BookManagemetController implements Initializable {
 
                bookIdField.setText(null);
                bookNameField.setText(null);
+               isbnField.setText(null);
                authorField.setText(null);
                categoryField.setText(null);
                descriptionField.setText(null);
@@ -296,6 +308,7 @@ public class BookManagemetController implements Initializable {
 
                bookIdField.setText(null);
                bookNameField.setText(null);
+               isbnField.setText(null);
                authorField.setText(null);
                categoryField.setText(null);
                descriptionField.setText(null);
@@ -322,6 +335,7 @@ public class BookManagemetController implements Initializable {
             if(book != null){
                 bookIdField.setText(String.valueOf(book.getBookId()));
                 bookNameField.setText(book.getName());
+                isbnField.setText(book.getIsbn());
                 authorField.setText(book.getAuthor());
                 categoryField.setText(book.getCategory());
                 descriptionField.setText(book.getDescription());
@@ -336,6 +350,7 @@ public class BookManagemetController implements Initializable {
 
                 bookIdField.setText(null);
                 bookNameField.setText(null);
+                isbnField.setText(null);
                 authorField.setText(null);
                 categoryField.setText(null);
                 descriptionField.setText(null);
@@ -359,13 +374,14 @@ public class BookManagemetController implements Initializable {
         {
             int bookId = Integer.parseInt(bookIdField.getText());
             String bookname = bookNameField.getText();
+            String isbn = isbnField.getText();
             String author = authorField.getText();
             String category = categoryField.getText();
             String description = descriptionField.getText();
             int copies = Integer.parseInt(copiesField.getText());
 
             try {
-                Book book = new Book(bookId,bookname,author,category,description,copies);
+                Book book = new Book(bookId,bookname,isbn,author,category,description,copies);
                 int i = BookDbController.updateBook(book);
 
                 if (i > 0) {
@@ -377,6 +393,7 @@ public class BookManagemetController implements Initializable {
 
                     bookIdField.setText(null);
                     bookNameField.setText(null);
+                    isbnField.setText(null);
                     authorField.setText(null);
                     categoryField.setText(null);
                     descriptionField.setText(null);

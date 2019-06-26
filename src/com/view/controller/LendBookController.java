@@ -10,10 +10,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -62,6 +65,9 @@ public class LendBookController implements Initializable {
     private JFXButton Reset;
 
     @FXML
+    private JFXButton bookReturn;
+
+    @FXML
     private ComboBox<String> loadBooks;
 
     @FXML
@@ -75,6 +81,19 @@ public class LendBookController implements Initializable {
 
     @FXML
     private TextField lenderNameField;
+
+    @FXML
+    void bookReturn(ActionEvent event) {
+        try {
+                Parent root = FXMLLoader.load(getClass().getResource("/com/view/fxml/ReturnBook.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("Return Book Management");
+                stage.setScene(new Scene(root));
+                stage.show();
+        }catch(IOException e){
+                System.out.println(e);
+        }
+    }
 
     @FXML
     void Reset(ActionEvent event) {

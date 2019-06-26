@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Smart Library">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Smart_Library_jar/Smart Library.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
