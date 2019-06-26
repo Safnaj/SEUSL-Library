@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 24, 2019 at 01:09 PM
+-- Generation Time: Jun 26, 2019 at 10:14 AM
 -- Server version: 5.7.19
--- PHP Version: 7.1.9
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,6 +32,7 @@ DROP TABLE IF EXISTS `books`;
 CREATE TABLE IF NOT EXISTS `books` (
   `bookId` varchar(20) NOT NULL,
   `name` varchar(100) NOT NULL,
+  `isbn` varchar(40) NOT NULL,
   `author` varchar(100) NOT NULL,
   `category` varchar(50) NOT NULL,
   `description` varchar(100) NOT NULL,
@@ -43,11 +44,12 @@ CREATE TABLE IF NOT EXISTS `books` (
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`bookId`, `name`, `author`, `category`, `description`, `noOfCopies`) VALUES
-('1111', 'Java', 'James', 'Technology', 'Programming', '220'),
-('1112', 'PHP', 'Winker', 'Technology', 'Programming', '100'),
-('1113', 'Steve Jobs', 'Mark Antony', 'History', 'Life of Steve Jobs', '50'),
-('1114', 'Laravel', 'Venkat Ram', 'Technology', '', '100');
+INSERT INTO `books` (`bookId`, `name`, `isbn`, `author`, `category`, `description`, `noOfCopies`) VALUES
+('1111', 'Java', '', 'James', 'Technology', 'Programming', '220'),
+('1112', 'PHP', '', 'Winker', 'Technology', 'Programming', '100'),
+('1113', 'Steve Jobs', '', 'Mark Antony', 'History', 'Life of Steve Jobs', '50'),
+('1115', 'Angular', '434564', 'google', 'Technology', 'Programing', '200'),
+('1116', 'Laravel', '4567876', 'Winson', 'Technology', 'Programming', '40');
 
 -- --------------------------------------------------------
 
@@ -70,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `lend` (
 --
 
 INSERT INTO `lend` (`memberId`, `book`, `borrowDate`, `returnDate`, `lender`) VALUES
+('1115', 'Java', '2019-05-15', '2019-06-20', 'Sajeeth'),
 ('1111', 'Java', '2019-04-02', '2019-05-02', 'Sajteeth');
 
 -- --------------------------------------------------------
@@ -86,6 +89,9 @@ CREATE TABLE IF NOT EXISTS `members` (
   `gender` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
   `phoneNo` varchar(50) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `grade` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
   PRIMARY KEY (`memberId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -93,10 +99,13 @@ CREATE TABLE IF NOT EXISTS `members` (
 -- Dumping data for table `members`
 --
 
-INSERT INTO `members` (`memberId`, `name`, `doa`, `gender`, `email`, `phoneNo`) VALUES
-('1', 'Sajeeth', '2018-10-12', 'Male', 'sajeeth95@gmail.com', '0754545325'),
-('1112', 'Safnaj', '2019-05-15', 'Male', 'safnaj96@live.com', '0777974207'),
-('1113', 'Aflaj', '2018-05-12', 'Male', 'ajlak@yahoo.com', '0778767543');
+INSERT INTO `members` (`memberId`, `name`, `doa`, `gender`, `email`, `phoneNo`, `type`, `grade`, `address`) VALUES
+('1', 'Sajeeth', '2018-10-12', 'Male', 'sajeeth95@gmail.com', '0754545325', 'Teacher', '12', 'Maruthamunai'),
+('1112', 'Safnaj', '2019-05-15', 'Male', 'safnaj96@live.com', '0777974207', '', '', ''),
+('1113', 'Aflaj', '2018-05-12', 'Male', 'ajlak@yahoo.com', '0778767543', '', '', ''),
+('1114', 'Shara', '2018-08-14', 'Female', 'shara@gmail.com', '0779742076', '', '', ''),
+('1115', 'Perera', '2019-05-15', 'Male', 'perarahc@gmail.com', '0713443213', 'Student', '10', 'Ampara'),
+('1116', 'Hanan', '2018-04-12', 'Male', 'hanan@live.com', '0756765675', 'Student', '11', 'Maruthamunai');
 
 -- --------------------------------------------------------
 
@@ -116,7 +125,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`username`, `password`) VALUES
 ('admin', 'admin123'),
-('safnaj', 'safnaj123');
+('safnaj', 'safnaj123'),
+('sajeeth', '1234');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
